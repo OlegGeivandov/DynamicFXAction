@@ -32,6 +32,12 @@ public class HelloController {
     @FXML
     GridPane elGrid;
 
+    @FXML
+    Button addEl;
+
+    @FXML
+    TextField nameEl;
+
 
     @FXML
     private void loadWords()
@@ -52,15 +58,34 @@ public class HelloController {
     }
 
     @FXML
+    void addElephant(){
+        Button bt=new Button("***");
+        Elephant el = new Elephant(nameEl.getText());
+        bt.setOnAction(actionEvent -> el.say());
+        Button btDel = new Button(("Del"));
+//        btDel.setOnAction(actionEvent -> {
+//            elGrid.getChildren().remove(elGrid.getRowCount(), 0);
+//            elGrid.getChildren().remove(elGrid.getRowCount(), 1);
+//            elGrid.getChildren().remove(elGrid.getRowCount(), 2);
+//        });
+        elGrid.addRow(elGrid.getRowCount(), new Label(el.name), bt, btDel);
+    }
+
+
+    @FXML
     void loadAsElClick(){
         ArrayList<Elephant> e = loadElephants(fname.getText());
         paintElephants(e);
     }
+
     public ArrayList<Elephant> loadElephants(String fname)
     {
         ArrayList<Elephant> elephants=new ArrayList<>();
         try {
-            List<String> lines = Files.readAllLines(new File(fname).toPath(), Charset.defaultCharset());
+            List<String> lines = Files.readAllLines(new File(fname).toPath(), Charset.forName("Windows-1251"));
+//            List<String> lines = Files.readAllLines(new File(fname).toPath(), Charset.defaultCharset());
+//            List<String> lines = Files.readAllLines(new File(fname).toPath(), Charset.defaultCharset());
+//            List<String> lines = Files.readAllLines(new File(fname).toPath());
             for (String word : lines) {
                 elephants.add(new Elephant(word));
             }
@@ -78,7 +103,14 @@ public class HelloController {
             System.out.println("надо бы нарисовать слона");
             Button bt=new Button("***");
             bt.setOnAction(actionEvent -> el.say());
-            elGrid.addRow(k+1, new Label(el.name), bt);
+            Button btDel = new Button(("Del"));
+            btDel.setOnAction(actionEvent -> {
+                elGrid.getChildren().remove(elGrid.getRowCount(), 0);
+                elGrid.getChildren().remove(elGrid.getRowCount(), 1);
+                elGrid.getChildren().remove(elGrid.getRowCount(), 2);
+            });
+
+            elGrid.addRow(k+1, new Label(el.name), bt, btDel);
             k++;
         }
     }

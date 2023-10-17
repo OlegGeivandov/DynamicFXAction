@@ -3,12 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="477.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dynamicfxaction.HelloController">
+<AnchorPane prefHeight="477.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dynamicfxaction.HelloController">
    <children>
       <VBox alignment="CENTER" prefHeight="102.0" prefWidth="166.0" spacing="20.0">
           <padding>
@@ -29,5 +30,7 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
       </GridPane>
+      <Button fx:id="addEl" layoutX="134.0" layoutY="310.0" mnemonicParsing="false" onAction="#addElephant" text="Add Elephant" />
+      <TextField fx:id="nameEl" layoutX="21.0" layoutY="310.0" prefHeight="25.0" prefWidth="92.0" />
    </children>
 </AnchorPane>
